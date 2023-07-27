@@ -44,7 +44,7 @@ class User {
         return this.tweet.map(item => {
             console.log(`
             @${this.username}: ${item.content},
-    
+            [likes ${item.getNumberOfLikes()}]
             ${item.type}
             `);
             return item;
@@ -56,6 +56,7 @@ class User {
         }
         this.followers.push(parameters);
     }
+    ;
     showFeed() {
         if (this.followers.length === 0) {
             console.log("Você não possui seguidores!");

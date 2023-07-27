@@ -2,6 +2,7 @@ import { v4 as uuid } from "uuid"
 import { Tweet } from "./Tweet";
 import { Followers } from "./Followers";
 
+
 export const users: User[] = [];
 
 export class User {
@@ -59,7 +60,7 @@ export class User {
         return this.tweet.map(item => {
             console.log(`
             @${this.username}: ${item.content},
-    
+            [likes ${item.getNumberOfLikes()}]
             ${item.type}
             `)
             return item
@@ -72,7 +73,7 @@ export class User {
             console.log("Você não pode seguir a si mesmo!")
         } 
         this.followers.push(parameters)
-    }
+    };
 
     public showFeed() {
         if(this.followers.length === 0){

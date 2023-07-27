@@ -1,5 +1,4 @@
 
-
 export class Followers {
     userName: string
 
