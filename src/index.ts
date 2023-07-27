@@ -4,13 +4,12 @@ import { Tweet } from "./models/Tweet";
 import { User } from "./models/User";
 
 console.log("Criando usuários")
-const user0 = new User("Leandro Fernandes", "leandro@email.com", "leandrofn3", 123456);
+
 const user1 = new User("Leandro Fernandes", "leandro@email.com", "leandrofn3", 123456);
 const user2 = new User("Fulano fulaninho", "fulano@email.com", "fulano1", 123456);
 const user3 = new User("Andrea", "andreaNoer@email.com", "andrea3", 456789)
 const user4 = new User("beltrano beltraninho", "beltrano@email.com", "beltrano1", 123456);
 
-user0.createUsers(user0)
 user1.createUsers(user1)
 user2.createUsers(user2)
 user3.createUsers(user3)
@@ -38,9 +37,17 @@ const follower2 = new Followers("andrea3")
 user1.addfollower(follower2)
 
 console.log("===========================================================")
+
 console.log("mostra todos os tweets do usuário")
-user1.showTweet()
+user3.showTweet()
 
 console.log("===========================================================")
 console.log("mostra o feed do usuário")
-user1.showFeed()
+user3.showFeed()
+
+console.log("===========================================================")
+
+tweet3.addLike("leandrofn3")
+
+console.log(tweet3)
+

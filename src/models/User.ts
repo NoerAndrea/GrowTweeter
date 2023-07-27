@@ -1,16 +1,14 @@
 import { v4 as uuid } from "uuid"
 import { Tweet } from "./Tweet";
 import { Followers } from "./Followers";
-
-
-export const users: User[] = [];
+import { users } from "../data/users";
 
 export class User {
     private id: string;
     public name: string;
     private email: string;
     public username: string;
-    private password?: number;
+    private password: number;
     public tweet: Tweet[];
     public followers: Followers[];
 
@@ -57,14 +55,17 @@ export class User {
             console.log("Usuário não existe!")
         }
 
-        return this.tweet.map(item => {
-            console.log(`
-            @${this.username}: ${item.content},
-            [likes ${item.getNumberOfLikes()}]
-            ${item.type}
-            `)
-            return item
+        const newArray = this.tweet.map(item => {
+            if(item.getNumberOfLikes() === 0){
+                return console.log(`
+                @${this.username}: ${item.content},
+                ${item.type}
+                ${console.log(item.getNumberOfLikes())}
+                `)
+            } 
         })
+
+        return newArray
     }
 
     public addfollower(parameters: Followers): void {

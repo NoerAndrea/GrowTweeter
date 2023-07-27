@@ -42,12 +42,13 @@ class User {
             console.log("Usuário não existe!");
         }
         return this.tweet.map(item => {
-            console.log(`
-            @${this.username}: ${item.content},
-            [likes ${item.getNumberOfLikes()}]
-            ${item.type}
-            `);
-            return item;
+            if (item.getNumberOfLikes() === 0) {
+                return console.log(`
+                @${this.username}: ${item.content},
+                ${item.type}
+                ${console.log(item.getNumberOfLikes())}
+                `);
+            }
         });
     }
     addfollower(parameters) {

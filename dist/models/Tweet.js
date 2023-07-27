@@ -24,7 +24,17 @@ class Tweet {
         }
     }
     getNumberOfLikes() {
-        return this.likes.length;
+        if (this.likes.length === 0) {
+            return 0;
+        }
+        else {
+            return 1;
+        }
+    }
+    getLike() {
+        const search = this.likes.forEach(item => item.userName);
+        console.log(search);
+        return search;
     }
 }
 exports.Tweet = Tweet;
