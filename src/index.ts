@@ -27,6 +27,9 @@ user3.createTweet(tweet2)
 user3.createTweet(tweet3)
 user2.createTweet(tweet4)
 
+tweet3.addLike("leandrofn3")
+tweet3.addReply("leandrofn3", "hahahaha")
+
 console.log("===========================================================")
 
 console.log("adicionando seguidor a um usuário")
@@ -43,11 +46,12 @@ user3.showTweet()
 
 console.log("===========================================================")
 console.log("mostra o feed do usuário")
-user3.showFeed()
+// user3.showFeed()
 
 console.log("===========================================================")
 
-tweet3.addLike("leandrofn3")
+// tweet3.responseTweet()
 
-console.log(tweet3)
+
+// console.log(tweet3)
 

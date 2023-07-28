@@ -1,6 +1,5 @@
 import { v4 as uuid } from "uuid"
 import { Type } from "../types/Type"
-
 import { Like } from "./Like"
 import { users } from "../data/users";
 import { Reply } from "./Reply";
@@ -25,45 +24,38 @@ export class Tweet {
         return this.idTweet
     }
 
-    public addLike(userName: string): void {
-        const user = users.find(item => item.username === userName)
+    public addLike(userName: string): number | undefined {
+        // const user = users.some(item => item.username === userName)
 
-        if (user) {
-            const newLike = new Like(userName)
-            this.likes.push(newLike);
-        } else {
+        // if (!user) return
 
-        }
+        const newLike = new Like(userName)
+        this.likes.push(newLike);
+        console.log(this.likes)
+        return
     }
 
     public getNumberOfLikes(): number {
-        if (this.likes.length === 0) {
-            return 0
-        }else {
-            return 1
-        }
+        return this.likes.length
     }
 
 
-    public getLike() {
-        const search = this.likes.forEach(item => item.userName)
-        console.log(search)
-        return search
+    public getLikes() {
+        const likes = this.getNumberOfLikes()
+
+        if (likes === 0) {
+            return ''
+        }
+        if (likes === 1) {
+            return `@${this.likes[0].userName} curtiu`
+        } else {
+            return `@${this.likes[likes - 1].userName} mais ${likes - 1} curtiram`
+        }
     }
 
-    addReply(){
-
+    addReply(username: string, content: string) {
+        const newReply = new Reply(username, content, this.idTweet);
+        this.reply.push(newReply);
     }
 
-    public responseTweet(userId: string, tweetId: string, contend: string){
-        const positionUser = users.findIndex(item => item.getid() === userId)
-
-        if (positionUser === -1) {
-            console.log("Usuário não existe!")
-        }
-
-        const positionTweet = users[positionUser].tweet.find(item => item.getIdTweet() === tweetId)
-
-        // const newReply = new Reply("funfou reply","normal");
-        }
 }

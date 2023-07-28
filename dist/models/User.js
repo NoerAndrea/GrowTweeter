@@ -1,9 +1,12 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.User = exports.users = void 0;
+exports.User = void 0;
 const uuid_1 = require("uuid");
-exports.users = [];
+const users_1 = require("../data/users");
 class User {
+    getIdTweet() {
+        throw new Error("Method not implemented.");
+    }
     constructor(name, email, username, password) {
         this.id = (0, uuid_1.v4)();
         this.name = name;
@@ -17,38 +20,35 @@ class User {
         return this.id;
     }
     createUsers(parameters) {
-        const validateUsername = exports.users.some(item => item.username === this.username);
+        const validateUsername = users_1.users.some(item => item.username === this.username);
         if (validateUsername) {
             console.log("userName existente, crie outro!");
         }
         else {
-            const newUsers = exports.users.push(parameters);
+            const newUsers = users_1.users.push(parameters);
             console.log(`Usuario criado com sucesso! ${newUsers}`);
         }
     }
     createTweet(parameters) {
-        const positionUser = exports.users.findIndex(item => item.getid() === this.id);
+        const positionUser = users_1.users.findIndex(item => item.getid() === this.id);
         if (positionUser === -1) {
             console.log("Usuário não existe!");
         }
         else {
-            const newTweet = exports.users[positionUser].tweet.push(parameters);
+            const newTweet = users_1.users[positionUser].tweet.push(parameters);
             console.log(`Tweet criado com sucesso!`);
         }
     }
     showTweet() {
-        const showContent = exports.users.find(item => item.getid() === this.id);
-        if (!showContent) {
-            console.log("Usuário não existe!");
-        }
-        return this.tweet.map(item => {
-            if (item.getNumberOfLikes() === 0) {
-                return console.log(`
-                @${this.username}: ${item.content},
-                ${item.type}
-                ${console.log(item.getNumberOfLikes())}
-                `);
-            }
+        // const showContent = users.find(item => item.getid() === this.id)
+        // if (!showContent) {
+        //     console.log("Usuário não existe!")
+        // }
+        this.tweet.forEach(item => {
+            console.log(item);
+            console.log(`@${this.username}: ${item.content} `);
+            console.log(item.getLikes());
+            console.log("_____________________________________________");
         });
     }
     addfollower(parameters) {
@@ -58,21 +58,5 @@ class User {
         this.followers.push(parameters);
     }
     ;
-    showFeed() {
-        if (this.followers.length === 0) {
-            console.log("Você não possui seguidores!");
-            return;
-        }
-        const arrayTweets = [];
-        exports.users.forEach(item => {
-            item.showTweet().forEach(item => arrayTweets.push(item));
-        });
-        const filterFollower = exports.users.filter(item => item.username === this.username);
-        if (!filterFollower) {
-            console.log("Você não segue esse usuário!");
-            return;
-        }
-        console.log(filterFollower);
-    }
 }
 exports.User = User;

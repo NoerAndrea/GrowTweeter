@@ -1,17 +1,16 @@
+import { users } from "../data/users";
 import { Type } from "../types/Type";
 import { Tweet } from "./Tweet";
 
 export class Reply {
     username: string
     content: string;
-    type: string
-    raply: Tweet[]
+    tweetAuthor: string
 
-    constructor(username: string ,content: string, type: Type) {
+    constructor(username: string, content: string, tweetAuthor: string) {
         this.username = username;
         this.content = content;
-        this.type = type;
-        this.raply = [];
+        this.tweetAuthor = tweetAuthor;
     }
 
 }

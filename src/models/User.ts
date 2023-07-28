@@ -4,6 +4,9 @@ import { Followers } from "./Followers";
 import { users } from "../data/users";
 
 export class User {
+    getIdTweet() {
+        throw new Error("Method not implemented.");
+    }
     private id: string;
     public name: string;
     private email: string;
@@ -49,30 +52,20 @@ export class User {
     }
 
     public showTweet() {
-        const showContent = users.find(item => item.getid() === this.id)
 
-        if (!showContent) {
-            console.log("Usuário não existe!")
-        }
-
-        const newArray = this.tweet.map(item => {
-            if(item.getNumberOfLikes() === 0){
-                return console.log(`
-                @${this.username}: ${item.content},
-                ${item.type}
-                ${console.log(item.getNumberOfLikes())}
-                `)
-            } 
+        this.tweet.forEach(item => {
+            console.log(item)
+            console.log(`@${this.username}: ${item.content} `)
+            console.log(item.getLikes())
+            console.log("_____________________________________________")
         })
-
-        return newArray
     }
 
     public addfollower(parameters: Followers): void {
-    
+
         if (parameters.userName === this.username) {
             console.log("Você não pode seguir a si mesmo!")
-        } 
+        }
         this.followers.push(parameters)
     };
 
@@ -85,7 +78,7 @@ export class User {
         const arrayTweets = []
 
         users.forEach(item => {
-            item.showTweet().forEach(item => arrayTweets.push(item))
+            item.tweet.forEach(item => arrayTweets.push(item))
         })
 
         const filterFollower = users.filter(item => item.username === this.username)
