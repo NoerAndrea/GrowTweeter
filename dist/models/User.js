@@ -14,10 +14,18 @@ class User {
         this.username = username;
         this.password = password;
         this.tweet = [];
-        this.followers = [];
+        this.following = [];
     }
     getid() {
         return this.id;
+    }
+    getDetailsUser() {
+        return {
+            id: this.id,
+            username: this.username,
+            tweet: this.tweet,
+            followers: this.following
+        };
     }
     createUsers(parameters) {
         const validateUsername = users_1.users.some(item => item.username === this.username);
@@ -40,14 +48,10 @@ class User {
         }
     }
     showTweet() {
-        // const showContent = users.find(item => item.getid() === this.id)
-        // if (!showContent) {
-        //     console.log("Usuário não existe!")
-        // }
         this.tweet.forEach(item => {
-            console.log(item);
             console.log(`@${this.username}: ${item.content} `);
-            console.log(item.getLikes());
+            console.log(`${item.getLikes()}`);
+            console.log(item.printReply());
             console.log("_____________________________________________");
         });
     }
@@ -55,8 +59,30 @@ class User {
         if (parameters.userName === this.username) {
             console.log("Você não pode seguir a si mesmo!");
         }
-        this.followers.push(parameters);
+        this.following.push(parameters);
     }
     ;
+    showFeed() {
+        if (this.following.length === 0) {
+            console.log("Você não possui seguidores!");
+            return;
+        }
+        const following = this.following.findIndex((follow) => {
+            return follow.getIdUserFollowig();
+        });
+        const t = users_1.users[following].showTweet();
+        // const arrayTweets = []
+        // const tweetsFollowing = users.forEach((item)=> {
+        //     return item.tweet.forEach((tweet)=> {
+        //         arrayTweets.push(tweet)
+        //     })
+        // })
+        // users.forEach(item => {
+        //     item.tweet.forEach(item => arrayTweets.push(item))
+        // })
+        // const arrayFollowing = [];
+        // const filterFollowing = users.filter(item => item.username === this.username)
+        // console.log(filterFollowing)
+    }
 }
 exports.User = User;

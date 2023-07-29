@@ -13,4 +13,11 @@ export class Reply {
         this.tweetAuthor = tweetAuthor;
     }
 
+    public getDatailReply(){
+        return {
+            username: this.username,
+            content: this.content
+        }
+    }
+
 }

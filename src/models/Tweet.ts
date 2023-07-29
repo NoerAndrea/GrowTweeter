@@ -25,10 +25,7 @@ export class Tweet {
     }
 
     public addLike(userName: string): number | undefined {
-        // const user = users.some(item => item.username === userName)
-
-        // if (!user) return
-
+    
         const newLike = new Like(userName)
         this.likes.push(newLike);
         console.log(this.likes)
@@ -44,18 +41,30 @@ export class Tweet {
         const likes = this.getNumberOfLikes()
 
         if (likes === 0) {
-            return ''
+            return ""
         }
         if (likes === 1) {
-            return `@${this.likes[0].userName} curtiu`
+            return `[@${this.likes[0].userName} curtiu]`
         } else {
-            return `@${this.likes[likes - 1].userName} mais ${likes - 1} curtiram`
+            return `[@${this.likes[likes - 1].userName} mais ${likes - 1} curtiram]`
         }
     }
 
     addReply(username: string, content: string) {
         const newReply = new Reply(username, content, this.idTweet);
         this.reply.push(newReply);
+    }
+
+    public printReply(){
+        this.reply.forEach((reply) => {
+            if(reply.username && reply.content){
+            console.log(` > @${reply.username} ${reply.content} `)
+            }
+
+            if(!reply.username && !reply.content){ 
+                return "";
+            }
+        });
     }
 
 }

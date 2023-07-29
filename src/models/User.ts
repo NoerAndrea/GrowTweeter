@@ -13,7 +13,7 @@ export class User {
     public username: string;
     private password: number;
     public tweet: Tweet[];
-    public followers: Followers[];
+    public following: Followers[];
 
     constructor(name: string, email: string, username: string, password: number) {
         this.id = uuid()
@@ -22,11 +22,20 @@ export class User {
         this.username = username;
         this.password = password;
         this.tweet = [];
-        this.followers = [];
+        this.following = [];
     }
 
     public getid(): string {
         return this.id
+    }
+
+    public getDetailsUser() {
+        return {
+            id: this.id,
+            username: this.username,
+            tweet: this.tweet,
+            followers: this.following
+        }
     }
 
     public createUsers(parameters: User): void {
@@ -54,9 +63,9 @@ export class User {
     public showTweet() {
 
         this.tweet.forEach(item => {
-            console.log(item)
             console.log(`@${this.username}: ${item.content} `)
-            console.log(item.getLikes())
+            console.log(`${item.getLikes()}`)
+            console.log(item.printReply())
             console.log("_____________________________________________")
         })
     }
@@ -66,28 +75,45 @@ export class User {
         if (parameters.userName === this.username) {
             console.log("Você não pode seguir a si mesmo!")
         }
-        this.followers.push(parameters)
+        this.following.push(parameters)
     };
 
     public showFeed() {
-        if(this.followers.length === 0){
+        if (this.following.length === 0) {
             console.log("Você não possui seguidores!")
             return
         }
 
-        const arrayTweets = []
+        const following = this.following.findIndex((follow) => {
+            return follow.getIdUserFollowig()
+        });
 
-        users.forEach(item => {
-            item.tweet.forEach(item => arrayTweets.push(item))
-        })
+        const t = users[following].showTweet()
 
-        const filterFollower = users.filter(item => item.username === this.username)
 
-        if (!filterFollower) {
-            console.log("Você não segue esse usuário!")
-            return
-        }
-        console.log(filterFollower)
+
+
+
+        
+        // const arrayTweets = []
+
+        // const tweetsFollowing = users.forEach((item)=> {
+        //     return item.tweet.forEach((tweet)=> {
+        //         arrayTweets.push(tweet)
+        //     })
+        // })
+
+        
+
+        // users.forEach(item => {
+        //     item.tweet.forEach(item => arrayTweets.push(item))
+        // })
+
+        // const arrayFollowing = [];
+
+        // const filterFollowing = users.filter(item => item.username === this.username)
+
+        // console.log(filterFollowing)
 
     }
 

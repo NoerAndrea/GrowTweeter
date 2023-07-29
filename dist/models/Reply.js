@@ -7,5 +7,11 @@ class Reply {
         this.content = content;
         this.tweetAuthor = tweetAuthor;
     }
+    getDatailReply() {
+        return {
+            username: this.username,
+            content: this.content
+        };
+    }
 }
 exports.Reply = Reply;

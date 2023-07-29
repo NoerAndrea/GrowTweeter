@@ -1,7 +1,18 @@
+import { users } from "./data/users";
 import { Followers } from "./models/Followers";
 import { Like } from "./models/Like";
 import { Tweet } from "./models/Tweet";
 import { User } from "./models/User";
+
+console.log("Listar usuários")
+
+console.log("listar usuários")
+
+const data = users.map((user) => {
+    return user.getDetailsUser()
+});
+
+console.log("===========================================================")
 
 console.log("Criando usuários")
 
@@ -30,28 +41,35 @@ user2.createTweet(tweet4)
 tweet3.addLike("leandrofn3")
 tweet3.addReply("leandrofn3", "hahahaha")
 
+tweet4.addLike("leandrofn3")
+tweet4.addLike("andrea3")
+
 console.log("===========================================================")
 
 console.log("adicionando seguidor a um usuário")
+
 const follower1 = new Followers("leandrofn3")
+const follower3 = new Followers("fulano1")
 user3.addfollower(follower1)
+user3.addfollower(follower3)
+
 
 const follower2 = new Followers("andrea3")
 user1.addfollower(follower2)
 
 console.log("===========================================================")
 
-console.log("mostra todos os tweets do usuário")
-user3.showTweet()
+// console.log("mostra todos os tweets do usuário")
+// user3.showTweet()
 
-console.log("===========================================================")
+// console.log("===========================================================")
 console.log("mostra o feed do usuário")
-// user3.showFeed()
+user3.showFeed()
 
-console.log("===========================================================")
+// console.log("===========================================================")
 
 // tweet3.responseTweet()
 
 
-// console.log(tweet3)
+// console.log(user3)
 
