@@ -27,6 +27,9 @@ class User {
             followers: this.following
         };
     }
+    showUser() {
+        return this.showTweet();
+    }
     createUsers(parameters) {
         const validateUsername = users_1.users.some(item => item.username === this.username);
         if (validateUsername) {
@@ -67,22 +70,18 @@ class User {
             console.log("Você não possui seguidores!");
             return;
         }
-        const following = this.following.findIndex((follow) => {
-            return follow.getIdUserFollowig();
+        for (let i of this.following) {
+            const seach = users_1.users.filter(following => following.username === i.userName);
+            const followerUsers = seach.filter(user => user.showTweet());
+            console.log(followerUsers);
+        }
+        const printUser = this.tweet.forEach(item => {
+            console.log(`@${this.username}: ${item.content} `);
+            console.log(`${item.getLikes()}`);
+            console.log(item.printReply());
+            console.log("_____________________________________________");
         });
-        const t = users_1.users[following].showTweet();
-        // const arrayTweets = []
-        // const tweetsFollowing = users.forEach((item)=> {
-        //     return item.tweet.forEach((tweet)=> {
-        //         arrayTweets.push(tweet)
-        //     })
-        // })
-        // users.forEach(item => {
-        //     item.tweet.forEach(item => arrayTweets.push(item))
-        // })
-        // const arrayFollowing = [];
-        // const filterFollowing = users.filter(item => item.username === this.username)
-        // console.log(filterFollowing)
+        console.log(printUser);
     }
 }
 exports.User = User;

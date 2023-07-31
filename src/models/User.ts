@@ -38,6 +38,10 @@ export class User {
         }
     }
 
+    public showUser() {
+        return this.showTweet()
+    }
+
     public createUsers(parameters: User): void {
         const validateUsername = users.some(item => item.username === this.username);
 
@@ -68,6 +72,7 @@ export class User {
             console.log(item.printReply())
             console.log("_____________________________________________")
         })
+
     }
 
     public addfollower(parameters: Followers): void {
@@ -84,37 +89,21 @@ export class User {
             return
         }
 
-        const following = this.following.findIndex((follow) => {
-            return follow.getIdUserFollowig()
-        });
+        for (let i of this.following) {
+            const seach = users.filter(following => following.username === i.userName)
 
-        const t = users[following].showTweet()
+            const followerUsers = seach.filter(user => user.showTweet())
 
+            console.log(followerUsers)
+        }
 
-
-
-
-        
-        // const arrayTweets = []
-
-        // const tweetsFollowing = users.forEach((item)=> {
-        //     return item.tweet.forEach((tweet)=> {
-        //         arrayTweets.push(tweet)
-        //     })
-        // })
-
-        
-
-        // users.forEach(item => {
-        //     item.tweet.forEach(item => arrayTweets.push(item))
-        // })
-
-        // const arrayFollowing = [];
-
-        // const filterFollowing = users.filter(item => item.username === this.username)
-
-        // console.log(filterFollowing)
-
+        const printUser = this.tweet.forEach(item => {
+            console.log(`@${this.username}: ${item.content} `)
+            console.log(`${item.getLikes()}`)
+            console.log(item.printReply())
+            console.log("_____________________________________________")
+        })
+        console.log(printUser)
     }
 
 }

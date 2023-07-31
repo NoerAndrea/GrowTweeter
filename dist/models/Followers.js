@@ -7,9 +7,11 @@ class Followers {
         this.userName = userName;
     }
     getIdUserFollowig() {
-        return users_1.users.findIndex((item) => {
+        users_1.users.forEach((item) => {
             item.getid() === this.userName;
-            return item.getid();
+            if (this.userName) {
+                return item.getid();
+            }
         });
     }
 }
